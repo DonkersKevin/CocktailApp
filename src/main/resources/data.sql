@@ -1,0 +1,11 @@
+INSERT INTO category (description) VALUES ('Non-Alcoholic');
+INSERT INTO category (description) VALUES ('Classic');
+INSERT INTO category (description) VALUES ('Fruity');
+INSERT INTO category (description) VALUES ('Strong');
+INSERT INTO unit_of_measure (description) VALUES ('Ounce');
+INSERT INTO unit_of_measure (description) VALUES ('Pinch');
+INSERT INTO unit_of_measure (description) VALUES ('Teaspoon');
+INSERT INTO unit_of_measure (description) VALUES ('Tablespoon');
+INSERT INTO unit_of_measure (description) VALUES ('ml');
+INSERT INTO unit_of_measure (description) VALUES ('cl');
+INSERT INTO unit_of_measure (description) VALUES ('gr');
