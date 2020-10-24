@@ -16,7 +16,8 @@ public class Recipe {
     private String url;
     private String directions;
 
-/*    private Difficulty difficulty;*/
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients;
@@ -26,6 +27,13 @@ public class Recipe {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Notes notes;
+
+    //Compiles even with error, h2 databse is used.
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     public Set<Ingredient> getIngredients() {
         return ingredients;
@@ -97,5 +105,21 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Set<Category> getCathegories() {
+        return categories;
+    }
+
+    public void setCathegories(Set<Category> cathegories) {
+        this.categories = cathegories;
     }
 }
