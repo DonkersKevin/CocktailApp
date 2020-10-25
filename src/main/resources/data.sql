@@ -2,6 +2,8 @@ INSERT INTO category (description) VALUES ('Non-Alcoholic');
 INSERT INTO category (description) VALUES ('Classic');
 INSERT INTO category (description) VALUES ('Fruity');
 INSERT INTO category (description) VALUES ('Strong');
+INSERT INTO category (description) VALUES ('Creamy');
+INSERT INTO unit_of_measure (description) VALUES ('Each');
 INSERT INTO unit_of_measure (description) VALUES ('Ounce');
 INSERT INTO unit_of_measure (description) VALUES ('Pinch');
 INSERT INTO unit_of_measure (description) VALUES ('Teaspoon');
