@@ -140,18 +140,18 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Notes longIslandNotes = new Notes();
         longIslandNotes.setRecipeNotes("One of the all time classics and a personal favourite." + "\n" +
                 "Go easy on this one, the punch comes a while later ;).");
-        longIslandRecipe.setNotes(longIslandNotes);
-        longIslandNotes.setRecipe(longIslandRecipe);
 
-        longIslandRecipe.getIngredients().add(new Ingredient("Vodka", new BigDecimal(15), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Tequila Blanco", new BigDecimal(15), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("White rum", new BigDecimal(15), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Cointreau", new BigDecimal(15), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Gin", new BigDecimal(15), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Lemon juice", new BigDecimal(15), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Sugar syrup", new BigDecimal(30), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Cola", new BigDecimal(10), mlUom,longIslandRecipe));
-        longIslandRecipe.getIngredients().add(new Ingredient("Ice", new BigDecimal(1), eachUom,longIslandRecipe));
+        longIslandRecipe.setNotes(longIslandNotes);
+
+        longIslandRecipe.addIngredient(new Ingredient("Vodka", new BigDecimal(15), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Tequila Blanco", new BigDecimal(15), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("White rum", new BigDecimal(15), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Cointreau", new BigDecimal(15), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Gin", new BigDecimal(15), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Lemon juice", new BigDecimal(15), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Sugar syrup", new BigDecimal(30), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Cola", new BigDecimal(10), mlUom));
+        longIslandRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(1), eachUom));
 
         longIslandRecipe.getCathegories().add(classicCategory);
         longIslandRecipe.getCathegories().add(strongCategory);
@@ -170,14 +170,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         Notes wRussianNotes = new Notes();
         wRussianNotes.setRecipeNotes("Popularized by the \"movie The Big Lebowsky\", this soft and creamy drink can also be enjoyed with half and half milk and cream." );
-        wRussianRecipe.setNotes(wRussianNotes);
-        wRussianNotes.setRecipe(wRussianRecipe);
 
-        wRussianRecipe.getIngredients().add(new Ingredient("Vodka", new BigDecimal(40),mlUom,wRussianRecipe));
-        wRussianRecipe.getIngredients().add(new Ingredient("Kahlua", new BigDecimal(30),mlUom,wRussianRecipe));
-        wRussianRecipe.getIngredients().add(new Ingredient("Cream", new BigDecimal(30),mlUom,wRussianRecipe));
-        wRussianRecipe.getIngredients().add(new Ingredient("Nutmeg", new BigDecimal(1),pinchUom,wRussianRecipe));
-        wRussianRecipe.getIngredients().add(new Ingredient("Ice", new BigDecimal(1),eachUom,wRussianRecipe));
+        wRussianRecipe.setNotes(wRussianNotes);
+
+        wRussianRecipe.addIngredient(new Ingredient("Vodka", new BigDecimal(40),mlUom));
+        wRussianRecipe.addIngredient(new Ingredient("Kahlua", new BigDecimal(30),mlUom));
+        wRussianRecipe.addIngredient(new Ingredient("Cream", new BigDecimal(30),mlUom));
+        wRussianRecipe.addIngredient(new Ingredient("Nutmeg", new BigDecimal(1),pinchUom));
+        wRussianRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(1),eachUom));
 
         wRussianRecipe.getCathegories().add(classicCategory);
         wRussianRecipe.getCathegories().add(creamyCategory);
