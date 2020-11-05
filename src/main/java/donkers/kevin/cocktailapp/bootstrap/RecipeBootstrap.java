@@ -4,15 +4,18 @@ import donkers.kevin.cocktailapp.domain.*;
 import donkers.kevin.cocktailapp.repositories.CategoryRepository;
 import donkers.kevin.cocktailapp.repositories.RecipeRepository;
 import donkers.kevin.cocktailapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private final CategoryRepository categoryRepository;
@@ -26,8 +29,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     @Override
+/*    @Transactional*/
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading bootstrap Data");
     }
 
     private List<Recipe> getRecipes() {
@@ -132,10 +137,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         longIslandRecipe.setGlass("Highball");
         longIslandRecipe.setDifficulty(Difficulty.EASY);
         longIslandRecipe.setDirections(
-                "1 - Fill glass with ice" + "\n" +
-                        "2 - Add Vodka, Tequila, White rum, Cointreau(or Triple sec) and gin" + "\n" +
-                        "3 - Add the juice of half a lemon, add the simple syrup and top off with Cola" + "\n" +
-                        "4 - Garnish with lemon wedge and a straw");
+                "1 - Fill glass with ice." + "\n" +
+                        "2 - Add Vodka, Tequila, White rum, Cointreau(or Triple sec) and gin." + "\n" +
+                        "3 - Add the juice of half a lemon, add the simple syrup and top off with Cola." + "\n" +
+                        "4 - Garnish with lemon wedge and a straw.");
+
+        System.out.println(longIslandRecipe.getDirections());
 
         Notes longIslandNotes = new Notes();
         longIslandNotes.setRecipeNotes("One of the all time classics and a personal favourite." + "\n" +
@@ -153,8 +160,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         longIslandRecipe.addIngredient(new Ingredient("Cola", new BigDecimal(10), mlUom));
         longIslandRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(1), eachUom));
 
-        longIslandRecipe.getCathegories().add(classicCategory);
-        longIslandRecipe.getCathegories().add(strongCategory);
+        longIslandRecipe.getCategories().add(classicCategory);
+        longIslandRecipe.getCategories().add(strongCategory);
+
+        longIslandRecipe.setSource("Liquor.com");
+        longIslandRecipe.setUrl("https://www.liquor.com/recipes/long-island-iced-tea/");
 
         recipes.add(longIslandRecipe);
 
@@ -163,13 +173,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         wRussianRecipe.setGlass("Thumbler");
         wRussianRecipe.setDifficulty(Difficulty.MODERATE);
         wRussianRecipe.setDirections(
-                "1 - Fill glass with ice" + "\n" +
+                "1 - Fill glass with ice." + "\n" +
                         "2 - Add Vodka and Kahlua." + "\n" +
-                        "3 - Softly pour cream on top" + "\n" +
-                        "4 - Garnish with freshly grated nutmeg and a short straw");
+                        "3 - Softly pour cream on top." + "\n" +
+                        "4 - Garnish with freshly grated nutmeg and a short straw.");
+
 
         Notes wRussianNotes = new Notes();
-        wRussianNotes.setRecipeNotes("Popularized by the \"movie The Big Lebowsky\", this soft and creamy drink can also be enjoyed with half and half milk and cream." );
+        wRussianNotes.setRecipeNotes("Popularized by the movie \"The Big Lebowsky\", this soft and creamy drink can also be enjoyed with half and half milk and cream." );
 
         wRussianRecipe.setNotes(wRussianNotes);
 
@@ -179,8 +190,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         wRussianRecipe.addIngredient(new Ingredient("Nutmeg", new BigDecimal(1),pinchUom));
         wRussianRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(1),eachUom));
 
-        wRussianRecipe.getCathegories().add(classicCategory);
-        wRussianRecipe.getCathegories().add(creamyCategory);
+        wRussianRecipe.getCategories().add(classicCategory);
+        wRussianRecipe.getCategories().add(creamyCategory);
+
+        wRussianRecipe.setSource("Njam");
+        wRussianRecipe.setUrl("https://njam.tv/recepten/straffe-koffie-white-russian");
 
         recipes.add(wRussianRecipe);
         return recipes;

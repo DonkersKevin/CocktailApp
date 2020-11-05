@@ -5,6 +5,7 @@ import donkers.kevin.cocktailapp.domain.UnitOfMeasure;
 import donkers.kevin.cocktailapp.repositories.CategoryRepository;
 import donkers.kevin.cocktailapp.repositories.UnitOfMeasureRepository;
 import donkers.kevin.cocktailapp.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class indexController {
 
     private final RecipeService recipeService;
 
     public indexController(RecipeService recipeService) {
+        log.debug("Getting index page");
         this.recipeService = recipeService;
     }
 
