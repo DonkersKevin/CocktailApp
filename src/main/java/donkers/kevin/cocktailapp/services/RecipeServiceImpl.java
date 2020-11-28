@@ -28,6 +28,11 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    public void deleteById(Long idToDelete) {
+        recipeRepository.deleteById(idToDelete);
+    }
+
+    @Override
     public Set<Recipe> getRecipes() {
         log.debug("I'm in the service");
         Set<Recipe> recipeSet = new HashSet<>();

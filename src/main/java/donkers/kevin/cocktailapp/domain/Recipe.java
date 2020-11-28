@@ -31,7 +31,7 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "recipe")
+    @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
     //Compiles even with error, h2 databse is used.

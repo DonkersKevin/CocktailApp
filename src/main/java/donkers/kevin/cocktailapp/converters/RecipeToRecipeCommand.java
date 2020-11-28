@@ -33,6 +33,7 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand>{
 
         final RecipeCommand command = new RecipeCommand();
         command.setId(source.getId());
+        command.setGlass(source.getGlass());
         command.setDescription(source.getDescription());
         command.setDifficulty(source.getDifficulty());
         command.setDirections(source.getDirections());
