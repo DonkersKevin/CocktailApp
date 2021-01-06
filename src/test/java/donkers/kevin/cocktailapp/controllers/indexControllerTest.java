@@ -8,7 +8,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
@@ -17,7 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anySet;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,14 +28,14 @@ class indexControllerTest {
     @Mock
     Model model;
 
-    indexController controller;
+    IndexController controller;
 
     @BeforeEach
     public void setUp() throws Exception{
 
         MockitoAnnotations.initMocks(this);
 
-        controller = new indexController(recipeService);
+        controller = new IndexController(recipeService);
     }
 
     @Test
