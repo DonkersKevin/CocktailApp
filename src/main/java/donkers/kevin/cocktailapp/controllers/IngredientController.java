@@ -1,6 +1,8 @@
 package donkers.kevin.cocktailapp.controllers;
 
 import donkers.kevin.cocktailapp.commands.IngredientCommand;
+import donkers.kevin.cocktailapp.commands.RecipeCommand;
+import donkers.kevin.cocktailapp.commands.UnitOfMeasureCommand;
 import donkers.kevin.cocktailapp.services.IngredientService;
 import donkers.kevin.cocktailapp.services.RecipeService;
 import donkers.kevin.cocktailapp.services.UnitOfMeasureService;
@@ -43,6 +45,22 @@ public class IngredientController {
     }
 
     @GetMapping
+    @RequestMapping("recipe/{recipeId}/ingredient/new")
+    public String newRecipe(@PathVariable String recipeId, Model model){
+        RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        ingredientCommand.setUom(new UnitOfMeasureCommand());
+
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+
+        return "recipe/ingredient/ingredientform";
+    }
+
+    @GetMapping
     @RequestMapping("recipe/{recipeId}/ingredient/{id}/update")
     public String updateRecipeIngredient(@PathVariable String recipeId,
                                          @PathVariable String id, Model model){
@@ -52,12 +70,20 @@ public class IngredientController {
         return "recipe/ingredient/ingredientform";
     }
 
+    @GetMapping("recipe/{recipeId}/ingredient/{id}/delete")
+    public String deleteIngredient(@PathVariable String recipeId, @PathVariable String id){
+        log.debug("Deleting ingredient id: " + id);
+        ingredientService.deleteById(Long.valueOf(recipeId), Long.valueOf(id));
+
+        return "redirect:/recipe/" + recipeId + "/ingredients";
+    }
+
     @PostMapping("recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand command){
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
-        log.debug("saved receipe id:" + savedCommand.getRecipeId());
-        log.debug("saved ingredient id:" + savedCommand.getId());
+        log.debug("saved receipe id: " + savedCommand.getRecipeId());
+        log.debug("saved ingredient id: " + savedCommand.getId());
 
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
     }
